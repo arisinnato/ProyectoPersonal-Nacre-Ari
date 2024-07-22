@@ -1,4 +1,6 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float, DateTime
+from sqlalchemy.orm import relationship
+
 
 from db.db_config import Base
 
@@ -33,3 +35,28 @@ class Product(Base):
     name = Column(String, nullable=False)
     description = Column(String)
     price = Column(Float, nullable=False)
+
+class Like(Base):
+    __tablename__ = 'likes'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('usuarios.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+
+class Purchase(Base):
+    __tablename__ = 'purchases'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('usuarios.id'), nullable=False)
+    date = Column(DateTime, nullable=False)
+    total = Column(Float, nullable=False)
+
+class PurchaseDetail(Base):
+    __tablename__ = 'purchase_details'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    purchase_id = Column(Integer, ForeignKey('purchases.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    quantity = Column(Integer, nullable=False)
+    price = Column(Float, nullable=False)
+
+
+    purchase = relationship('Purchase', back_populates='purchase_details')
+    product = relationship('Product', back_populates='purchase_details')
