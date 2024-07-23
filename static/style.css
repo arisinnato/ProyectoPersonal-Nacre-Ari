@@ -1,0 +1,261 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    margin: 0;
+    height: 100vh;
+    background: #d0cbc9;
+    color: #fff;
+}
+
+:root {
+    --color-primary: #a87e0c;
+}
+
+.logo{
+    height: 10rem;
+    margin-left: 1rem;
+    margin-top: 0.8rem;
+    display: block;
+}
+  
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+  
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px 0;
+}
+  
+nav > :is(h1, span.material-symbols-outlined) {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+}
+  
+nav h1 {
+    background: #343950;
+    border-radius: 8px;
+    font-size: 16px;
+}
+  
+nav span {
+    color: #fff;
+    font-size: 20px;
+}
+  
+a {
+    cursor: pointer;
+}
+  
+.menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: 70px;
+}
+  
+.menu li {
+    display: inline-block;
+    width: 80px;
+    color: #999;
+    transition: all 0.3s ease-in-out;
+}
+  
+.menu li:hover .submenu {
+    height: 85px;
+}
+  
+.menu > li:hover > a {
+    color: #fff;
+}
+  
+.menu > li:hover > a::before {
+    visibility: visible;
+    scale: 1 1;
+}
+  
+.submenu {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    background-color: var(--color-primary);
+    height: 0;
+    line-height: 40px;
+    box-sizing: border-box;
+    transition: height 0.3s ease-in-out;
+}
+  
+.menu li .submenu a {
+    color: #fff;
+    opacity: 0;
+    font-size: 16px;
+    transition: opacity 0.25s;
+}
+  
+.menu > li:hover .submenu a {
+    opacity: 1;
+}
+  
+.menu > li .submenu a:hover {
+    background: rgb(0 0 0 / 20%);
+}
+  
+.menu > li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 7px;
+    font-size: 16px;
+    text-decoration: none;
+    position: relative;
+    height: 100%;
+    transition: 0.3s;
+}
+  
+.menu > li > a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 3px;
+    left: 0px;
+    background-color: var(--color-primary);
+    transition: all 0.2s ease-in-out;
+    scale: 0 0;
+    visibility: hidden;
+}
+  
+.login-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    padding: 70px 30px 44px;
+    border-radius: 20px;
+    background: rgb(24 21 36 / 66%);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+  
+.login-card > h2 {
+    font-size: 36px;
+    font-weight: 400;
+    margin: 12px;
+}
+  
+.login-card > h3 {
+    color: rgb(255 255 255 / 38%);
+    margin: 0 0 48px;
+    font-weight: 400;
+    font-size: 16px;
+}
+  
+.login-form {
+    display: grid;
+    gap: 16px;
+    text-align: center;
+}
+  
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+  
+.login-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-primary);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.login-form button:hover {
+    background-color: #80600b;
+}
+  
+
+/* PRODUCTOS */
+
+.products {
+    padding: 50px 20px;
+    background: #fff;
+    color: #333;
+    text-align: center;
+}
+
+.products h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-card {
+    width: 30%;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.product-card h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.5em;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.add-to-cart-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-to-cart-button:hover {
+    background: #7d5e0c;
+}
