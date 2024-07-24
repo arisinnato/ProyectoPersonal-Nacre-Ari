@@ -1,18 +1,12 @@
 from sqlalchemy.orm import Session
 import models, schemas
 #
-def create_product(db: Session, product: schemas.ProductCreate):
-    db_product = models.Producto(
-        id_artesano=product.id_artesano,
-        nombre=product.nombre,
-        descripcion=product.descripcion,
-        cantidad_disponible= product.cantidad_disponible,
-        categoria=product.categoria,
-        id_tipo=product.id_tipo,
-        dimensiones=product.dimensiones,
-        peso=product.peso,
-        precio_unitario= product.precio_unitario,
-        imagen=product.imagen
+def create_product(db: Session, products: schemas.ProductCreate):
+    db_product = models.Product(
+        id=products.id,
+        nombre=products.nombre,
+        descripcion=products.descripcion,
+        precio = products.precio
     )
 
     db.add(db_product)

@@ -37,9 +37,9 @@ nav > :is(h1, span.material-symbols-outlined) {
     display: grid;
     place-items: center;
 }
-  
+
 nav h1 {
-    background: #343950;
+    background: #dddee5;
     border-radius: 8px;
     font-size: 16px;
 }
