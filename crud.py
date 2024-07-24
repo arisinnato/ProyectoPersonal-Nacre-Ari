@@ -12,8 +12,8 @@ def get_password_hash(password):
 def create_user(db: Session, user: schemas.UserCreate):
     db_user = models.Usuario(
         id=user.id,
-        nombre=user.nombres,
-        apellido=user.apellidos,
+        nombre=user.nombre,
+        apellido=user.apellido,
         correo_electronico=user.correo,
         contrasena=get_password_hash(user.contrasena),
         tipo_usuario=user.tipo_usuario
@@ -25,7 +25,7 @@ def create_user(db: Session, user: schemas.UserCreate):
 
 
 def get_user_by_ci(db: Session, user_id: int):
-    return db.query(models.Usuario).filter(models.Usuario.cedula_identidad == user_id).first()
+    return db.query(models.Usuario).filter(models.Usuario.id == user_id).first()
 
 def update_user(db: Session, user_id: int, user: schemas.UserUpdate):
     db_user = get_user_by_ci(db, user_id)

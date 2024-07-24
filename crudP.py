@@ -15,10 +15,8 @@ def create_product(db: Session, products: schemas.ProductCreate):
     return db_product
     
 
-
-
 def get_product_by_id(db: Session, product_id: int):
-    return db.query(models.Producto).filter(models.Producto.id_producto == product_id).first()
+    return db.query(models.Product).filter(models.Product.id == product_id).first()
 
 def update_product(db: Session, product_id: int, product: schemas.ProductUpdate):
     db_product = get_product_by_id(db, product_id)
@@ -41,7 +39,4 @@ def delete_product(db: Session, product_id: int):
 
 
 def get_products(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Producto).offset(skip).limit(limit).all()
-
-'''def get_types(db: Session, skip: int = 10, limit: int = 100):
-    return db.query(models.Tipo_Producto).offset(skip).limit(limit).all()'''
+    return db.query(models.Product).offset(skip).limit(limit).all()
