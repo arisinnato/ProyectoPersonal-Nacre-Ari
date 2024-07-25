@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collares</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/Favicon.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <img src="/img/Logo nacre.png" alt="Logo" />
+        </div>
+        <ul class="menu">
+            <li><a href="/templates/home_no_logeado.html">Home</a></li>
+            <li><a href="/templates/productos/brazaletes.html">Brazaletes</a></li>
+            <li><a href="/templates/productos/collares.html">Collares</a></li>
+            <li><a href="{{ url_for('zarcillos') }}">Zarcillos</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="{{ url_for('carrito') }}">
+                <img src="/img/carro-vacio (1).png" alt="Carrito" />
+            </a>
+            <a href="{{ url_for('me_gusta') }}">
+                <img src="/img/precioso.png" alt="Me Gusta" />
+            </a>
+        </div>
+    </nav>
+    <div class="main-content">
+        <h1>Nuestra Colección de Collares</h1>
+        <div class="products-grid">
+            {% for collar in collares %}
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename='img/' + collar.image) }}" alt="{{ collar.name }}" />
+                    <h2>{{ collar.name }}</h2>
+                    <p>{{ collar.description }}</p>
+                    <p class="price">${{ collar.price }}</p>
+                    <button>Añadir al Carrito</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

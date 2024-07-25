@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazaletes</title>
+    <link rel="shortcut icon" href="/img/Favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <img src="/img/Logo nacre.png" alt="Logo" />
+        </div>
+        <ul class="menu">
+            <li><a href="/templates/home_no_logeado.html">Home</a></li>
+            <li><a href="{{ url_for('/brazaletes.html') }}">Brazaletes</a></li>
+            <li><a href="{{ url_for('collares') }}">Collares</a></li>
+            <li><a href="{{ url_for('zarcillos') }}">Zarcillos</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="{{ url_for('carrito') }}">
+                <img src="/img/carro-vacio (1).png" alt="Carrito" />
+            </a>
+            <a href="{{ url_for('me_gusta') }}">
+                <img src="/img/precioso.png" alt="Me Gusta" />
+            </a>
+        </div>
+    </nav>
+    <div class="main-content">
+        <h1>Nuestra Colección de Brazaletes</h1>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="/img/brazaletes/pulsera_mariposa.png" alt="{{ brazalete.name }}" />
+                <h2>Pulseras con mariposas</h2>
+                <p>Pulseras hechas con balines dorados con mariposas tornasol</p>
+                <p class="price">$12.00</p>
+                <button>Añadir al Carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="/img/brazaletes/pulsera_corazon.png" alt="{{ brazalete.name }}" />
+                <h2>Pulsera con corazón rojo</h2>
+                <p>Pulsera con balines dorados con corazón rojo</p>
+                <p class="price">$10.00</p>
+                <button>Añadir al Carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="/img/brazaletes/pulsera_gatos.png" alt="{{ brazalete.name }}" />
+                <h2>Pulsera de gatos</h2>
+                <p>Especial para las peques o grandes de la casa, pulsera con gatos y otros detalles</p>
+                <p class="price">$14.00</p>
+                <button>Añadir al Carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="/img/brazaletes/pulseras_tipo_pandora.png" alt="{{ brazalete.name }}" />
+                <h2>Brazalete tipo pandora</h2>
+                <p>Brazalete tipo pandora con charms de elección</p>
+                <p class="price">$10.00</p>
+                <button>Añadir al Carrito</button>
+            </div>
+            <div class="product-card">
+                <img src="/img/brazaletes/pulsera_miyuki.png" alt="{{ brazalete.name }}" />
+                <h2>Brazalete miyuki</h2>
+                <p>Brazalete con mostacilla miyuki de colores</p>
+                <p class="price">$6.00</p>
+                <button>Añadir al Carrito</button>
+            </div>
+        </div>
+        
+    </div>    
+</body>
+</html>

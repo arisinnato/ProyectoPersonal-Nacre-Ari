@@ -7,7 +7,6 @@ from starlette.middleware.sessions import SessionMiddleware
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 from datetime import timedelta
-
 import models, schemas, crud, crudP, auth
 from db.db_config import SessionLocal, engine
 
@@ -33,6 +32,32 @@ def get_db():
         yield db
     finally:
         db.close()
+
+@app.get("/", response_class=HTMLResponse)
+async def home_no_logeado(request: Request):
+    return templates.TemplateResponse("home_no_logeado.html", {"request": request})
+
+
+@app.get("/brazaletes", response_class=HTMLResponse)
+async def brazaletes(request: Request, db: Session = Depends(get_db)):
+    brazaletes = db.query(models.Producto).filter(models.Product.categoria == "Brazaletes").all()
+    return templates.TemplateResponse("brazaletes.html", {"request": request, "brazaletes": brazaletes})
+
+@app.get("/collares", response_class=HTMLResponse)
+async def collares(request: Request):
+    return templates.TemplateResponse("collares.html", {"request": request})
+
+@app.get("/zarcillos", response_class=HTMLResponse)
+async def zarcillos(request: Request):
+    return templates.TemplateResponse("zarcillos.html", {"request": request})
+
+@app.get("/carrito", response_class=HTMLResponse)
+async def carrito(request: Request):
+    return templates.TemplateResponse("carrito.html", {"request": request})
+
+@app.get("/me_gusta", response_class=HTMLResponse)
+async def me_gusta(request: Request):
+    return templates.TemplateResponse("me_gusta.html", {"request": request})
 
 @app.post("/register", response_class=HTMLResponse)
 async def register_user(request: Request, 

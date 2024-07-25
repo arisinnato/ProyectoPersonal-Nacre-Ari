@@ -33,6 +33,8 @@ class Product(Base):
     name = Column(String, nullable=False)
     description = Column(String)
     price = Column(Float, nullable=False)
+    image = Column(String)
+    categoria = Column(String)
 
 class Like(Base):
     __tablename__ = 'likes'
