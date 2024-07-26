@@ -59,31 +59,34 @@ async def carrito(request: Request):
 async def me_gusta(request: Request):
     return templates.TemplateResponse("me_gusta.html", {"request": request})
 
-@app.post("/register", response_class=HTMLResponse)
-async def register_user(request: Request, 
-                        username: str = Form(...), 
-                        email: str = Form(...), 
-                        password: str = Form(...), 
-                        full_name: str = Form(...), 
-                        date_of_birth: str = Form(...), 
-                        db: Session = Depends(get_db)):
-    user = schemas.UserCreate(username=username, 
-                              email=email, 
-                              password=password, 
-                              full_name=full_name, 
-                              date_of_birth=date_of_birth)
-    db_user = crud.get_user_by_email(db, email=user.email)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
-    db_user = crud.get_user_by_username(db, username=user.username)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already taken")
-    crud.create_user(db=db, user=user)
-    return templates.TemplateResponse("register.html", {"request": request, "message": "User registered successfully!"})
+@app.get("/usuario/registro", response_class=HTMLResponse)
+async def registro(request: Request):
+    return templates.TemplateResponse("registro.html", {"request": request})
 
-@app.get("/register", response_class=HTMLResponse)
-async def register_user_form(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+@app.post("/usuario/registro", response_class=HTMLResponse)
+async def create_usuario_post(request: Request, 
+                              id: str = Form(...), 
+                              nombre: str = Form(...), 
+                              apellido: str = Form(...),
+                              correo_electronico: str = Form(...), 
+                              contrasena: str = Form(...), 
+                              tipo_usuario : str = Form(...),
+                              db: Session = Depends(get_db)):
+    user = schemas.UserCreate(id=id, 
+                              nombre=nombre, 
+                              apellido=apellido, 
+                              correo_electronico=correo_electronico, 
+                              contrasena=contrasena, 
+                              tipo_usuario=tipo_usuario)
+    db_user = crud.get_user_by_email(db, email=user.correo)
+    if db_user: 
+        raise HTTPException(status_code=400, detail="Email already registered")
+    db_user = crud.get_user_by_ci(db, user_id=user.id)
+    if db_user: 
+        raise HTTPException(status_code=400, detail="CI already registered")
+    crud.create_user(db=db, user=user)
+    return RedirectResponse(url="/", status_code=303)
+
 
 @app.post("/token", response_class=HTMLResponse)
 async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
@@ -102,9 +105,24 @@ async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends
     response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
     return response
 
-@app.get("/login", response_class=HTMLResponse)
-async def login_form(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
+@app.get("/usuario/login", response_class=HTMLResponse)
+async def login_template(request: Request):
+    return templates.TemplateResponse("inicio_sesion.html", {"request": request})
+
+@app.post("/usuario/login")
+async def login(request: Request, 
+                username: str = Form(...), 
+                password: str = Form(...), 
+                db: Session = Depends(get_db)):
+    user = crud.get_user_by_email(db, email=username)
+    if not user:
+        raise HTTPException(status_code=400, detail="Invalid email or password")
+    if not auth.verify_password(password, user.contrasena):
+        raise HTTPException(status_code=400, detail="Invalid email or password")
+    
+    response = RedirectResponse(url="/", status_code=303)
+    auth.set_auth_cookie(response, user.id)
+    return response
 
 @app.get("/logout", response_class=HTMLResponse)
 async def logout(request: Request):

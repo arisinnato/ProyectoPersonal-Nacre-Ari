@@ -60,3 +60,12 @@ class PurchaseDetail(Base):
 
     purchase = relationship('Purchase', back_populates='purchase_details')
     product = relationship('Product', back_populates='purchase_details')
+
+class Carrito(Base):
+    __tablename__ = "carrito"
+
+    id = Column(Integer, primary_key=True, index=True)
+    producto_id = Column(Integer, ForeignKey("products.id"))
+    cantidad = Column(Integer, default=1)
+
+    producto = relationship("Product")

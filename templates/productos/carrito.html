@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home No Logeado</title>
     <link rel="shortcut icon" href="/img/Favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
+    <title>Carrito</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -15,25 +14,32 @@
         </div>
         <ul class="menu">
             <li><a href="/templates/home_no_logeado.html">Home</a></li>
-            <li><a href="/templates/productos/brazaletes.html">Brazaletes</a></li>
-            <li><a href="/templates/productos/collares.html">Collares</a></li>
+            <li><a href="templates/productos/brazaletes.html">Brazaletes</a></li>
+            <li><a href="{{ url_for('collares') }}">Collares</a></li>
             <li><a href="{{ url_for('zarcillos') }}">Zarcillos</a></li>
         </ul>
         <div class="nav-icons">
-            <a href="/templates/carrito.html"> 
+            <a href="/templates/productos/carrito.html">
                 <img src="/img/carro-vacio (1).png" alt="Carrito" />
             </a>
             <a href="{{ url_for('me_gusta') }}">
                 <img src="/img/precioso.png" alt="Me Gusta" />
             </a>
-            <a href="/templates/users/register.html">
-                <img src="/img/acceso.png" alt="Acceder" />
-            </a>
         </div>
     </nav>
-    <div class="main-content">
-        <h1>Bienvenido a Nacre</h1>
-        <p>Explora nuestra colección de bisutería fina.</p>
-    </div>
+
+    <main class="main-content">
+        <h1>Carrito de Compras</h1>
+        <ul>
+            {% for item in carrito_items %}
+                <li>
+                    <h2>{{ item.producto.nombre }}</h2>
+                    <p>Precio: {{ item.producto.precio }}</p>
+                    <p>Cantidad: {{ item.cantidad }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/templates/users/home.html">Continuar Comprando</a>
+    </main>
 </body>
 </html>

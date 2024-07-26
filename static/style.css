@@ -52,7 +52,10 @@ nav {
 
 .main-content {
     text-align: center;
-    padding: 100px 20px;
+    padding: 20px 20px;
+    position: absolute;
+    justify-content: center;
+    display: block;
 }
 
 .main-content h1 {
@@ -196,58 +199,44 @@ a {
     visibility: hidden;
 }
   
-.login-card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 400px;
-    padding: 70px 30px 44px;
-    border-radius: 20px;
-    background: rgb(24 21 36 / 66%);
-    backdrop-filter: blur(10px);
+h1 {
     text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #a87e0c;
 }
-  
-.login-card > h2 {
-    font-size: 36px;
-    font-weight: 400;
-    margin: 12px;
+
+form {
+    display: flex;
+    flex-direction: column;
 }
-  
-.login-card > h3 {
-    color: rgb(255 255 255 / 38%);
-    margin: 0 0 48px;
-    font-weight: 400;
+
+form input,
+form select {
+    margin-bottom: 10px;
+    padding: 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-  
-.login-form {
-    display: grid;
-    gap: 16px;
-    text-align: center;
-}
-  
-.login-form input {
-    width: 100%;
+
+form button {
     padding: 10px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #a87e0c;
     border: none;
-    border-radius: 5px;
-}
-  
-.login-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--color-primary);
-    color: #fff;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-  
-.login-form button:hover {
-    background-color: #80600b;
+
+form button:hover {
+    background-color: #a87e0c;
+}
+
+form select {
+    padding: 8px;
 }
   
 

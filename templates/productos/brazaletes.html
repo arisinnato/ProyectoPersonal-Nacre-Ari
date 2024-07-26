@@ -36,35 +36,50 @@
                 <h2>Pulseras con mariposas</h2>
                 <p>Pulseras hechas con balines dorados con mariposas tornasol</p>
                 <p class="price">$12.00</p>
-                <button>Añadir al Carrito</button>
+                <form action="/templates/productos/carrito.html" method="post">
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <button type="submit">Agregar al Carrito</button>
+                </form>
             </div>
             <div class="product-card">
                 <img src="/img/brazaletes/pulsera_corazon.png" alt="{{ brazalete.name }}" />
                 <h2>Pulsera con corazón rojo</h2>
                 <p>Pulsera con balines dorados con corazón rojo</p>
                 <p class="price">$10.00</p>
-                <button>Añadir al Carrito</button>
+                <form action="/templates/productos/carrito.html" method="post">
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <button type="submit">Agregar al Carrito</button>
+                </form>
             </div>
             <div class="product-card">
                 <img src="/img/brazaletes/pulsera_gatos.png" alt="{{ brazalete.name }}" />
                 <h2>Pulsera de gatos</h2>
                 <p>Especial para las peques o grandes de la casa, pulsera con gatos y otros detalles</p>
                 <p class="price">$14.00</p>
-                <button>Añadir al Carrito</button>
+                <form action="/templates/productos/carrito.html" method="post">
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <button type="submit">Agregar al Carrito</button>
+                </form>
             </div>
             <div class="product-card">
                 <img src="/img/brazaletes/pulseras_tipo_pandora.png" alt="{{ brazalete.name }}" />
                 <h2>Brazalete tipo pandora</h2>
                 <p>Brazalete tipo pandora con charms de elección</p>
                 <p class="price">$10.00</p>
-                <button>Añadir al Carrito</button>
+                <form action="/templates/productos/carrito.html" method="post">
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <button type="submit">Agregar al Carrito</button>
+                </form>
             </div>
             <div class="product-card">
                 <img src="/img/brazaletes/pulsera_miyuki.png" alt="{{ brazalete.name }}" />
                 <h2>Brazalete miyuki</h2>
                 <p>Brazalete con mostacilla miyuki de colores</p>
                 <p class="price">$6.00</p>
-                <button>Añadir al Carrito</button>
+                <form action="/templates/productos/carrito.html" method="post">
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <button type="submit">Agregar al Carrito</button>
+                </form>
             </div>
         </div>
         

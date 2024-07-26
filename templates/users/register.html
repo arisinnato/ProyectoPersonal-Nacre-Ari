@@ -11,7 +11,7 @@
 <body>
     <nav>
         <div class="nav-logo">
-            <img src="{{ url_for('static', filename='img/Logo web.svg') }}" alt="Logo" />
+            <img src="/img/Logo nacre.png" alt="Logo" />
         </div>
         <ul class="menu">
             <li><a href="{{ url_for('home_no_logeado') }}">Home</a></li>
@@ -34,15 +34,10 @@
             <input type="text" name="cedula_identidad" placeholder="Cédula de Identidad" required>
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellido" placeholder="Apellido" required>
-            <input type="date" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" required>
-            <input type="text" name="direccion" placeholder="Dirección" required>
             <input type="email" name="correo_electronico" placeholder="Correo Electrónico" required>
             <input type="password" name="contrasena" placeholder="Contraseña" required>
-            <select name="tipo_usuario">
-                <option value="artesano">Artesano</option>
-                <option value="cliente">Cliente</option>
-            </select>
             <button type="submit">Registrar</button>
+            <a class="link-log" href="/templates/users/login.html">¿Ya estás registrado? Inicia sesión!</a>
         </form>
     </div>
 </body>

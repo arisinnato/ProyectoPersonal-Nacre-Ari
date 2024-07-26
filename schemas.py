@@ -24,8 +24,7 @@ class User(UserBase):
 
 #producto
 class ProductBase(BaseModel):
-    id_artesano: int
-    id_tipo: str
+    id: str
     nombre: str
     descripcion: str
     precio: str
@@ -41,3 +40,19 @@ class Product(ProductBase):
 
     class Config:
         orm_mode = True
+
+#Carrito 
+
+class CarritoBase(BaseModel):
+    producto_id: int
+    cantidad: int
+
+class CarritoCreate(CarritoBase):
+    pass
+
+class Carrito(CarritoBase):
+    id: int
+    producto: Product
+
+class Config:
+    orm_mode = True
