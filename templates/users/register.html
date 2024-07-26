@@ -30,7 +30,7 @@
     </nav>
     <div class="main-content">
         <h1>Registro de Usuario</h1>
-        <form method="post" action="{{ url_for('create_usuario_post') }}">
+        <form method="post" action="/templates/users/register.html">
             <input type="text" name="cedula_identidad" placeholder="Cédula de Identidad" required>
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="text" name="apellido" placeholder="Apellido" required>

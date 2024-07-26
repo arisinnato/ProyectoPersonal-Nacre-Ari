@@ -33,49 +33,64 @@ def get_db():
     finally:
         db.close()
 
+
+######## HOME Y CATEGORIAS ############
 @app.get("/", response_class=HTMLResponse)
 async def home_no_logeado(request: Request):
     return templates.TemplateResponse("home_no_logeado.html", {"request": request})
 
+# CATEGORIAS 
+
+#Brazalete
 
 @app.get("/brazaletes", response_class=HTMLResponse)
 async def brazaletes(request: Request, db: Session = Depends(get_db)):
     brazaletes = db.query(models.Producto).filter(models.Product.categoria == "Brazaletes").all()
     return templates.TemplateResponse("brazaletes.html", {"request": request, "brazaletes": brazaletes})
 
+#Collares
+
 @app.get("/collares", response_class=HTMLResponse)
 async def collares(request: Request):
     return templates.TemplateResponse("collares.html", {"request": request})
+
+#Zarcillos
 
 @app.get("/zarcillos", response_class=HTMLResponse)
 async def zarcillos(request: Request):
     return templates.TemplateResponse("zarcillos.html", {"request": request})
 
+## Carritos
+
 @app.get("/carrito", response_class=HTMLResponse)
 async def carrito(request: Request):
     return templates.TemplateResponse("carrito.html", {"request": request})
+
+#Me gusta
 
 @app.get("/me_gusta", response_class=HTMLResponse)
 async def me_gusta(request: Request):
     return templates.TemplateResponse("me_gusta.html", {"request": request})
 
-@app.get("/usuario/registro", response_class=HTMLResponse)
-async def registro(request: Request):
-    return templates.TemplateResponse("registro.html", {"request": request})
+############ Usuarios ########## 
 
-@app.post("/usuario/registro", response_class=HTMLResponse)
-async def create_usuario_post(request: Request, 
-                              id: str = Form(...), 
-                              nombre: str = Form(...), 
-                              apellido: str = Form(...),
-                              correo_electronico: str = Form(...), 
-                              contrasena: str = Form(...), 
-                              tipo_usuario : str = Form(...),
-                              db: Session = Depends(get_db)):
+@app.get("/registro", response_class=HTMLResponse)
+async def registro(request: Request):
+    return templates.TemplateResponse("home_no_logeado.html", {"request": request})
+
+@app.post("/registro", response_class=HTMLResponse)
+def create_usuario_post(request: Request, 
+                            id: str = Form(...), 
+                            nombre: str = Form(...), 
+                            apellido: str = Form(...),
+                            correo: str = Form(...), 
+                            contrasena: str = Form(...), 
+                            tipo_usuario : str = Form(...),
+                            db: Session = Depends(get_db)):
     user = schemas.UserCreate(id=id, 
                               nombre=nombre, 
                               apellido=apellido, 
-                              correo_electronico=correo_electronico, 
+                              correo=correo, 
                               contrasena=contrasena, 
                               tipo_usuario=tipo_usuario)
     db_user = crud.get_user_by_email(db, email=user.correo)
@@ -124,11 +139,7 @@ async def login(request: Request,
     auth.set_auth_cookie(response, user.id)
     return response
 
-@app.get("/logout", response_class=HTMLResponse)
-async def logout(request: Request):
-    response = RedirectResponse(url="/", status_code=status.HTTP_302_FOUND)
-    response.delete_cookie("access_token")
-    return response
+
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request, db: Session = Depends(get_db)):
@@ -139,6 +150,8 @@ async def read_products(request: Request, db: Session = Depends(get_db)):
     products = crudP.get_products(db)
     return templates.TemplateResponse("products.html", {"request": request, "products": products})
 
+
+#####  Carrito  #####
 @app.post("/add_to_cart", response_class=HTMLResponse)
 async def add_to_cart(request: Request, product_id: int = Form(...), db: Session = Depends(get_db)):
     user_token = request.cookies.get("access_token")
